@@ -59,11 +59,13 @@ class PacmanGame(GameApp):
         self.elements.append(self.pacman2)
         self.command_map = {
             'W': self.get_pacman_next_direction_function(self.pacman1, DIR_UP),
-
-
-            # TODO:
-            #   - add all other commands to the command_map
-
+            'S': self.get_pacman_next_direction_function(self.pacman1, DIR_DOWN),
+            'A': self.get_pacman_next_direction_function(self.pacman1, DIR_LEFT),
+            'D': self.get_pacman_next_direction_function(self.pacman1, DIR_RIGHT),
+            'J': self.get_pacman_next_direction_function(self.pacman2, DIR_LEFT),
+            'I': self.get_pacman_next_direction_function(self.pacman2, DIR_UP),
+            'K': self.get_pacman_next_direction_function(self.pacman2, DIR_DOWN),
+            'L': self.get_pacman_next_direction_function(self.pacman2, DIR_RIGHT)
         }
         self.pacman1_score = 0
         self.pacman2_score = 0
@@ -98,31 +100,11 @@ class PacmanGame(GameApp):
     def post_update(self):
         pass
 
-
     def on_key_pressed(self, event):
-        if event.char.upper() == 'A':
-            self.pacman1.set_next_direction(DIR_LEFT)
-        elif event.char.upper() == 'W':
-            self.pacman1.set_next_direction(DIR_UP)
-        elif event.char.upper() == 'S':
-            self.pacman1.set_next_direction(DIR_DOWN)
-        elif event.char.upper() == 'D':
-            self.pacman1.set_next_direction(DIR_RIGHT)
+        ch = event.char.upper()
+        if ch in self.command_map:
+            self.command_map[ch]()
 
-        if event.char.upper() == 'J':
-            self.pacman2.set_next_direction(DIR_LEFT)
-        elif event.char.upper() == 'I':
-            self.pacman2.set_next_direction(DIR_UP)
-        elif event.char.upper() == 'K':
-            self.pacman2.set_next_direction(DIR_DOWN)
-        elif event.char.upper() == 'L':
-            self.pacman2.set_next_direction(DIR_RIGHT)
-
-        def on_key_pressed(self, event):
-            ch = event.char.upper()
-
-            # TODO:
-            #   - check if ch is in self.command_map, if it is in the map, call the function.
 
 
 if __name__ == "__main__":
