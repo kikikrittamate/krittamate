@@ -10,6 +10,7 @@ CANVAS_WIDTH = 800
 CANVAS_HEIGHT = 600
 
 UPDATE_DELAY = 33
+
 PACMAN_SPEED = 5
 
 class Pacman(Sprite):
